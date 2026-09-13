@@ -113,8 +113,7 @@ u_sample_sizes = [
 
 
 
-# Separate simulator API
-SIMULATOR_DATA_URL = "http://127.0.0.1:5001/api/data"
+SIMULATOR_DATA_URL = "https://spc-simulator.onrender.com/api/data"
 simulator_last_id = 0
 
 def get_next_simulator_data(chart_type):
