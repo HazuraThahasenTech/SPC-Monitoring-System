@@ -16,10 +16,6 @@ body {
 }
 
 
-/* =========================
-   SIDEBAR
-========================= */
-
 .sidebar {
     width: 250px;
     min-height: 100vh;
@@ -36,7 +32,7 @@ body {
 }
 
 .sidebar h2 {
-    font-size: 23px;
+    font-size: 23px;/
     margin-bottom: 35px;
     padding-left: 10px;
 }
@@ -71,20 +67,12 @@ body {
 }
 
 
-/* =========================
-   MAIN CONTENT
-========================= */
-
 .main-content {
     margin-left: 250px;
     width: calc(100% - 250px);
     padding: 32px;
 }
 
-
-/* =========================
-   HEADER
-========================= */
 
 header {
     display: flex;
@@ -112,10 +100,6 @@ header p {
     font-weight: 600;
 }
 
-
-/* =========================
-   KPI CARDS
-========================= */
 
 .cards {
     display: grid;
@@ -153,10 +137,6 @@ header p {
 }
 
 
-/* =========================
-   SECTIONS
-========================= */
-
 .chart-section {
     background: white;
     border-radius: 15px;
@@ -186,10 +166,6 @@ header p {
     margin-top: 5px;
 }
 
-
-/* =========================
-   CONFIGURATION
-========================= */
 
 .config-grid {
     display: grid;
@@ -223,10 +199,6 @@ header p {
 }
 
 
-/* =========================
-   BUTTONS
-========================= */
-
 .primary-button {
     border: none;
     background: #2563eb;
@@ -243,10 +215,6 @@ header p {
     transform: translateY(-1px);
 }
 
-
-/* =========================
-   LIVE MONITORING
-========================= */
 
 .status-bar {
     display: flex;
@@ -273,10 +241,6 @@ header p {
 }
 
 
-/* =========================
-   CHARTS
-========================= */
-
 .chart-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -297,10 +261,6 @@ header p {
 }
 
 
-/* =========================
-   ALARM BANNER
-========================= */
-
 #alarm-banner {
     display: none;
     margin-bottom: 20px;
@@ -313,10 +273,6 @@ header p {
     box-shadow: 0 4px 15px rgba(220, 38, 38, 0.1);
 }
 
-
-/* =========================
-   LOWER PANELS
-========================= */
 
 .bottom-section {
     display: grid;
@@ -357,10 +313,6 @@ header p {
 }
 
 
-/* =========================
-   TABLES
-========================= */
-
 .table-wrapper {
     overflow-x: auto;
 }
@@ -393,10 +345,6 @@ tbody tr:hover {
     background: #f8fafc;
 }
 
-
-/* =========================
-   REPORTS
-========================= */
 
 .report-grid {
     display: grid;
@@ -432,10 +380,6 @@ tbody tr:hover {
     text-decoration: none;
 }
 
-
-/* =========================
-   RESPONSIVE
-========================= */
 
 @media (max-width: 1100px) {
 

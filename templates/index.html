@@ -1379,19 +1379,6 @@ async function getLiveMeasurement() {
             await response.json();
 
 
-        /*
-        IMPORTANT:
-        The separate simulator may temporarily have no
-        new observation available.
-
-        In that situation the backend returns
-        simulator_waiting = true.
-
-        We simply keep the previous chart and
-        measurement displayed instead of trying
-        to process undefined values.
-        */
-
         if (data.simulator_waiting === true) {
             return;
         }
