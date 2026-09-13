@@ -114,21 +114,101 @@ u_sample_sizes = [
 
 
 SIMULATOR_DATA_URL = "https://spc-simulator.onrender.com/api/data"
-simulator_last_id = 0
+
+simulator_last_id = None
+
+
+def initialize_simulator_cursor():
+
+    global simulator_last_id
+
+    try:
+
+        with urlopen(
+            SIMULATOR_DATA_URL,
+            timeout=2
+        ) as r:
+
+            payload = json.loads(
+                r.read().decode("utf-8")
+            )
+
+        ids = [
+            int(item.get("id", 0))
+            for item in payload.get("data", [])
+        ]
+
+        simulator_last_id = max(
+            ids,
+            default=0
+        )
+
+    except (
+        URLError,
+        HTTPError,
+        TimeoutError,
+        ValueError,
+        json.JSONDecodeError
+    ):
+
+        simulator_last_id = 0
+
 
 def get_next_simulator_data(chart_type):
+
     global simulator_last_id
-    expected = "variable" if chart_type in ("xbar_r", "xbar_s", "imr") else "attribute"
-    try:
-        with urlopen(f"{SIMULATOR_DATA_URL}?after_id={simulator_last_id}", timeout=2) as r:
-            payload = json.loads(r.read().decode("utf-8"))
-    except (URLError, HTTPError, TimeoutError, ValueError, json.JSONDecodeError):
+
+    expected = (
+        "variable"
+        if chart_type in ("xbar_r", "xbar_s", "imr")
+        else "attribute"
+    )
+
+    if simulator_last_id is None:
+
+        initialize_simulator_cursor()
+
         return None
-    for item in sorted(payload.get("data", []), key=lambda x: int(x.get("id", 0))):
-        item_id = int(item.get("id", 0))
-        simulator_last_id = max(simulator_last_id, item_id)
+
+    try:
+
+        with urlopen(
+            f"{SIMULATOR_DATA_URL}?after_id={simulator_last_id}",
+            timeout=2
+        ) as r:
+
+            payload = json.loads(
+                r.read().decode("utf-8")
+            )
+
+    except (
+        URLError,
+        HTTPError,
+        TimeoutError,
+        ValueError,
+        json.JSONDecodeError
+    ):
+
+        return None
+
+    for item in sorted(
+        payload.get("data", []),
+        key=lambda x: int(x.get("id", 0))
+    ):
+
+        item_id = int(
+            item.get("id", 0)
+        )
+
+        simulator_last_id = max(
+            simulator_last_id,
+            item_id
+        )
+
         if item.get("data_type") == expected:
+
             return item
+
     return None
 
 def waiting_for_simulator(chart_type):
